@@ -3,6 +3,8 @@ package com.raaflahar.maybank.service.impl;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.raaflahar.maybank.dto.request.CustomerRequest;
@@ -35,5 +37,11 @@ public class CustomerServiceImpl implements CustomerService {
         Customer customer = customerRepository.findById(id)
                 .orElseThrow(() -> new CustomerNotFoundException("Customer not found"));
         return customerMapper.toResponse(customer);
+    }
+
+    @Override
+    public Page<CustomerResponse> getAllCustomers(Pageable pageable) {
+        Page<Customer> page = customerRepository.findAll(pageable);
+        return page.map(customerMapper::toResponse);
     }
 }
