@@ -1,0 +1,28 @@
+# maybank-app-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: maybank-app
+  namespace: maybank
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: maybank-app
+  template:
+    metadata:
+      labels:
+        app: maybank-app
+    spec:
+      containers:
+        - name: maybank-app
+          image: raaflahar/maybank-app:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:postgresql://maybank-postgres:5432/maybank
+            - name: SPRING_DATASOURCE_USERNAME
+              value: postgres
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: root

@@ -5,9 +5,9 @@ import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.raaflahar.maybank.entity.Customer;
+import com.raaflahar.maybank.entity.Account;
 
 @Repository
-public interface CustomerRepository extends JpaRepository<Customer, UUID> {
-    boolean existsByEmail(String email);
+public interface AccountRepository extends JpaRepository<Account, UUID> {
+    boolean existsByAccountNumber(String accountNumber);
 }

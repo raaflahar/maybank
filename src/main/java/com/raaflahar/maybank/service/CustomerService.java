@@ -10,6 +10,8 @@ import com.raaflahar.maybank.dto.response.CustomerResponse;
 
 public interface CustomerService {
     CustomerResponse createCustomer(CustomerRequest request);
+    CustomerResponse updateCustomer(UUID id, CustomerRequest request);
+    void deleteCustomer(UUID id);
     CustomerResponse getCustomerById(UUID id);
     Page<CustomerResponse> getAllCustomers(Pageable pageable);
 }

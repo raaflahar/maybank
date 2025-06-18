@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: maybank-postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: maybank
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - maybank-network
+
+  maybank-app:
+    image: maybank-app:latest
+    container_name: maybank-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8079:8080"
+    depends_on:
+      - postgres
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/maybank
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: root
+    networks:
+      - maybank-network
+
+volumes:
+  postgres_data:
+
+networks:
+  maybank-network:

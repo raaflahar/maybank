@@ -1,4 +1,4 @@
-package com.raaflahar.maybank.constant;
+package com.raaflahar.maybank.constant.enums;
 
 public enum Role {
     ADMIN,

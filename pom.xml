@@ -134,6 +134,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<finalName>maybank-banking-platform</finalName>
 	</build>
 
 </project>

@@ -2,11 +2,22 @@ package com.raaflahar.maybank.constant;
 
 public class ApiEndpoint {
 
-    public static final String API_V1 = "/api/v1";
+    public static final String BASE_API = "/api/v1";
+
+    public static class Auth {
+        public static final String AUTH = BASE_API + "/auth";
+    }
 
     public static class Customer {
-        public static final String BASE = API_V1 + "/customers";
-        public static final String CREATE = BASE;
-        public static final String GET_BY_ID = BASE + "/{id}";
+        public static final String CUSTOMER = BASE_API + "/customers";
     }
+
+    public static class Account {
+        public static final String ACCOUNT = BASE_API + "/accounts";
+    }
+
+    public static class Transaction {
+        public static final String TRANSACTION = BASE_API + "/transactions";
+    }
+
 }
